@@ -16,6 +16,7 @@ func main() {
 			userHandlerV1 := v1handler.NewUserHandler()
 			user.GET("", userHandlerV1.GetUsersV1)
 			user.GET("/:id", userHandlerV1.GetUsersByIdV1)
+			user.GET("admins/:uuid", userHandlerV1.GetUsersByUuidV1)
 			user.POST("", userHandlerV1.PostUsersV1)
 			user.PUT(":id", userHandlerV1.PutUsersV1)
 			user.DELETE("/:id", userHandlerV1.DeleteUsersV1)
@@ -29,6 +30,12 @@ func main() {
 			product.POST("", productHandlerV1.PostProductsV1)
 			product.PUT("/:id", productHandlerV1.PutProductsV1)
 			product.DELETE("/:id", productHandlerV1.DeleteProductsV1)
+		}
+
+		category := v1.Group("/category")
+		{
+			categoryHandlerV1 := v1handler.NewCategoryHandler()
+			category.GET("/:category", categoryHandlerV1.GetCategoryByCategoryV1)
 		}
 	}
 
